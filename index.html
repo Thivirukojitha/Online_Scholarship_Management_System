@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Scholarship Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Online Scholarship Management System</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Scholarships</a>
+            <a href="#">Apply</a>
+            <a href="#">Status</a>
+            <a href="#">Profile</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome Students!</h2>
+        <p>Apply for scholarships quickly and easily.</p>
+        <button onclick="showMessage()">Apply Now</button>
+    </section>
+
+    <section class="cards">
+        <div class="card">
+            <h3>Merit Scholarship</h3>
+            <p>Amount: $2000</p>
+            <button>View</button>
+        </div>
+
+        <div class="card">
+            <h3>Financial Aid</h3>
+            <p>Amount: $1500</p>
+            <button>View</button>
+        </div>
+
+        <div class="card">
+            <h3>Sports Scholarship</h3>
+            <p>Amount: $1000</p>
+            <button>View</button>
+        </div>
+    </section>
+
+    <section class="apply">
+        <h2>Scholarship Application</h2>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="Faculty" required>
+            
+            <select required>
+                <option value="">Select Scholarship</option>
+                <option value="merit">Merit Scholarship</option>
+                <option value="financial">Financial Aid</option>
+                <option value="sports">Sports Scholarship</option>
+            </select>
+            
+            <textarea placeholder="Why do you deserve this scholarship?" rows="4" required></textarea>
+            <input type="file" required>
+            
+            <button type="submit">Submit Application</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 Online Scholarship Management System</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
