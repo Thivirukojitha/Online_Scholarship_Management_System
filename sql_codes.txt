@@ -37,3 +37,11 @@ INSERT INTO scholarships (title, description, deadline)
 VALUES ('Mahapola Scholarship', 'Financial assistance for university students.', '2026-12-31');
 
 
+-- Announcements table
+CREATE TABLE IF NOT EXISTS announcements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
