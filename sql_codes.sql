@@ -4,15 +4,16 @@ USE scholarship_db;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
+    full_name VARCHAR(255) NOT NULL,
+    age INT NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'student') NOT NULL
 );
 
 
-INSERT INTO users (username, password, role) VALUES 
-('ucsc', 'ucsc', 'student'),
-('admin', 'admin123', 'admin');
-
+INSERT INTO users (username, full_name, age, password, role) VALUES 
+('ucsc', 'Default Student', 20, 'ucsc', 'student'),
+('admin', 'Default Admin', 30, 'admin123', 'admin');
 
 -- Scholarships table
 CREATE TABLE IF NOT EXISTS scholarships (

@@ -17,7 +17,7 @@ $result = mysqli_query($conn, $sql);
 
     <?php if(mysqli_num_rows($result) > 0): ?>
         <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
-            <tr style="background-color: #004080; color: white;">
+            <tr style="background-color: #760031; color: white;">
                 <th style="padding: 10px;">Scholarship Name</th>
                 <th style="padding: 10px;">Description</th>
                 <th style="padding: 10px;">Deadline</th>
@@ -29,7 +29,7 @@ $result = mysqli_query($conn, $sql);
                     <td style="padding: 10px;"><?php echo $row['description']; ?></td>
                     <td style="padding: 10px;"><?php echo $row['deadline']; ?></td>
                     <td style="padding: 10px;">
-                        <a href="apply.php?scholarship_id=<?php echo $row['id']; ?>" style="color: #004080; font-weight: bold;">Apply Now</a>
+                        <a href="apply.php?scholarship_id=<?php echo $row['id']; ?>" style="color: #760031; font-weight: bold;">Apply Now</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

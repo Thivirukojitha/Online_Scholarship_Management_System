@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insert_sql = "INSERT INTO applications (student_id, scholarship_id, document_path, status) VALUES ($student_id, $sch_id, '$file_name', 'Pending')";
             
             if(mysqli_query($conn, $insert_sql)) {
-                $success = "Application submitted successfully! You can track the status on your dashboard.";
+                $success = "Application submitted successfully! You can <a href='dashboard.php' style='color: #fff; text-decoration: underline;'>view your application status on the dashboard</a>.";
             } else {
                 $error = "Database error: " . mysqli_error($conn);
             }

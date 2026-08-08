@@ -31,7 +31,7 @@ $result = mysqli_query($conn, $query);
 
     <?php if(mysqli_num_rows($result) > 0): ?>
         <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
-            <tr style="background-color: #004080; color: white;">
+            <tr style="background-color: #760031; color: white;">
                 <th style="padding: 10px;">Student</th>
                 <th style="padding: 10px;">Scholarship</th>
                 <th style="padding: 10px;">Document</th>

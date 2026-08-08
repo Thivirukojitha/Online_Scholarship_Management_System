@@ -52,7 +52,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit" class="btn">Login</button>
     </form>
     <br>
-    <p><i>Hint: Default user is username: <b>ucsc</b>, password: <b>ucsc</b></i></p>
+    <!--<p><i>Hint: Default user is username: <b>ucsc</b>, password: <b>ucsc</b></i></p>-->
+    <p>Don't have an account? <a href="register.php?role=student">Student Registration</a> | <a href="register.php?role=admin">Admin Registration</a></p>
 </div>
 
 <?php require_once 'includes/footer.php'; ?>

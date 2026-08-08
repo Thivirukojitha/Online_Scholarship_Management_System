@@ -34,8 +34,8 @@ $rejected_apps = $rejected_apps_row['count'];
 
     <table border="1" style="width: 50%; border-collapse: collapse; text-align: left; background: #fff;">
         <tr>
-            <th style="padding: 10px; background-color: #004080; color: white;">Metric</th>
-            <th style="padding: 10px; background-color: #004080; color: white;">Count</th>
+            <th style="padding: 10px; background-color: #760031; color: white;">Metric</th>
+            <th style="padding: 10px; background-color: #760031; color: white;">Count</th>
         </tr>
         <tr><td style="padding: 10px;">Registered Students</td><td style="padding: 10px;"><?php echo $total_students; ?></td></tr>
         <tr><td style="padding: 10px;">Available Scholarships</td><td style="padding: 10px;"><?php echo $total_scholarships; ?></td></tr>

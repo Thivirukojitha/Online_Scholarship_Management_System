@@ -6,12 +6,12 @@
 }
 
 body {
-    background-color: #f4f4f9;
+    background-color: #f6ecf2;
     color: #333;
 }
 
 header {
-    background-color: #004080;
+    background-color: #760031;
     color: #fff;
     padding: 1rem 2rem;
     display: flex;
@@ -27,6 +27,53 @@ header nav a {
 
 header nav a:hover {
     text-decoration: underline;
+}
+
+.home-hero {
+    padding: 1.5rem;
+    background: #f8e6ef;
+    border: 1px solid #f0d8e5;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text h2 {
+    margin-bottom: 0.75rem;
+}
+
+.hero-text p {
+    margin-bottom: 1rem;
+}
+
+.notice-board {
+    display: grid;
+    gap: 1rem;
+}
+
+.announcement-card {
+    padding: 1rem;
+    border: 1px solid #e0c8d8;
+    border-radius: 8px;
+    background: #fff7fb;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.announcement-card strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.notice-date {
+    display: inline-block;
+    margin-left: 0.75rem;
+    color: #5d5d5d;
+    font-size: 0.9rem;
+}
+
+.announcement-card p {
+    margin-top: 0.75rem;
+    white-space: pre-line;
 }
 
 .container {
@@ -56,16 +103,18 @@ header nav a:hover {
 }
 
 .btn {
+    display: inline-block;
     padding: 10px 15px;
-    background-color: #004080;
+    background-color: #760031;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 .btn:hover {
-    background-color: #003060;
+    background-color: #4d0022;
 }
 
 .error {
@@ -76,8 +125,60 @@ header nav a:hover {
 footer {
     text-align: center;
     padding: 1rem;
-    background-color: #ddd;
-    position: fixed;
-    bottom: 0;
+    background-color: #f1dce6;
     width: 100%;
+    margin-top: 2rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    border: 1px solid #e0c8d8;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.table th,
+.table td {
+    border: 1px solid #e0c8d8;
+    padding: 0.95rem 1rem;
+    text-align: left;
+}
+
+.table th {
+    background-color: #760031;
+    color: #fff;
+    font-weight: 600;
+}
+
+.table tr:nth-child(even) {
+    background-color: #faf0f7;
+}
+
+.table tr:hover {
+    background-color: #f2d9e6;
+}
+
+ul {
+    margin: 1rem 0;
+    padding-left: 1.3rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+p, ol, li {
+    line-height: 1.7;
+}
+
+a {
+    color: #760031;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

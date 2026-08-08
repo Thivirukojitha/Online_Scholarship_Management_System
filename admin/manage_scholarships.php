@@ -41,7 +41,7 @@ $result = mysqli_query($conn, "SELECT * FROM scholarships ORDER BY deadline ASC"
     <?php if($error != '') echo "<div class='error'>$error</div>"; ?>
     <?php if($success != '') echo "<div style='color: green; margin-bottom: 10px;'>$success</div>"; ?>
 
-    <form method="POST" action="manage_scholarships.php" style="background: #eee; padding: 15px; border-radius: 5px;">
+    <form method="POST" action="manage_scholarships.php" style="background: #f5e7ef; padding: 15px; border-radius: 5px;">
         <h3>Add New Scholarship</h3><br>
         <div class="form-group">
             <label>Title</label>
@@ -62,7 +62,7 @@ $result = mysqli_query($conn, "SELECT * FROM scholarships ORDER BY deadline ASC"
     <h3>Existing Programs</h3><br>
     <?php if(mysqli_num_rows($result) > 0): ?>
         <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
-            <tr style="background-color: #004080; color: white;">
+            <tr style="background-color: #760031; color: white;">
                 <th style="padding: 10px;">Title</th>
                 <th style="padding: 10px;">Deadline</th>
                 <th style="padding: 10px;">Action</th>

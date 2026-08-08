@@ -11,12 +11,21 @@ if(isset($_SESSION['user_id'])) {
 $error = '';
 $success = '';
 
+$role = isset($_GET['role']) && $_GET['role'] === 'admin' ? 'admin' : 'student';
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $role = isset($_POST['role']) && $_POST['role'] === 'admin' ? 'admin' : 'student';
+    $full_name = sanitize_input($conn, $_POST['full_name']);
+    $age = sanitize_input($conn, $_POST['age']);
     $username = sanitize_input($conn, $_POST['username']);
     $password = sanitize_input($conn, $_POST['password']);
     $confirm_password = sanitize_input($conn, $_POST['confirm_password']);
 
-    if($password !== $confirm_password) {
+    if(empty($full_name)) {
+        $error = "Full name is required.";
+    } elseif(!ctype_digit($age) || intval($age) <= 0) {
+        $error = "Please enter a valid age.";
+    } elseif($password !== $confirm_password) {
         $error = "Passwords do not match!";
     } else {
         $check_sql = "SELECT id FROM users WHERE username = '$username'";
@@ -25,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(mysqli_num_rows($check_result) > 0) {
             $error = "Username already exists. Please choose another.";
         } else {
-            $insert_sql = "INSERT INTO users (username, password, role) VALUES ('$username', '$password', 'student')";
+            $insert_sql = "INSERT INTO users (username, password, role, full_name, age) VALUES ('$username', '$password', '$role', '$full_name', $age)";
             if(mysqli_query($conn, $insert_sql)) {
                 $success = "Registration successful! You can now login.";
             } else {
@@ -37,8 +46,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <div class="container">
-    <h2>Student Registration</h2>
-    <p>Create a new account to apply for scholarships.</p>
+    <h2><?php echo ucfirst($role); ?> Registration</h2>
+    <p>Create a new account to access the system.</p>
     <br>
     
     <?php if($error != ''): ?>
@@ -49,6 +58,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php endif; ?>
 
     <form method="POST" action="register.php" onsubmit="return validateRegistration()">
+        <input type="hidden" name="role" value="<?php echo $role; ?>">
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" name="full_name" id="full_name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" min="1" required>
+        </div>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>
