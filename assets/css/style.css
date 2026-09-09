@@ -118,6 +118,14 @@ header nav a:hover {
     background-color: #4d0022;
 }
 
+.table .action-btn {
+    margin-top: 0;
+}
+
+.table .action-form {
+    display: inline;
+}
+
 .error {
     color: red;
     margin-bottom: 10px;
