@@ -23,9 +23,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = "Sorry, only PDF, JPG, and PNG files are allowed.";
     } else {
         if(move_uploaded_file($_FILES["document"]["tmp_name"], $target_file)) {
-            $insert_sql = "INSERT INTO applications (student_id, scholarship_id, document_path, status) VALUES ($student_id, $sch_id, '$file_name', 'Pending')";
+            $status = 'Pending';
+            $insert_stmt = mysqli_prepare($conn, "INSERT INTO applications (student_id, scholarship_id, document_path, status) VALUES (?, ?, ?, ?)");
+            mysqli_stmt_bind_param($insert_stmt, "iiss", $student_id, $sch_id, $file_name, $status);
             
-            if(mysqli_query($conn, $insert_sql)) {
+            if(mysqli_stmt_execute($insert_stmt)) {
                 $success = "Application submitted successfully! You can <a href='dashboard.php' style='color: #fff; text-decoration: underline;'>view your application status on the dashboard</a>.";
             } else {
                 $error = "Database error: " . mysqli_error($conn);

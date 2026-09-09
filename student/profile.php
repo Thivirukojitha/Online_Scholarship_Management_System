@@ -19,16 +19,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if($new_password !== $confirm_password) {
         $error = "New passwords do not match.";
     } else {
-        $check_sql = "SELECT password FROM users WHERE id = $user_id LIMIT 1";
-        $result = mysqli_query($conn, $check_sql);
+        $check_stmt = mysqli_prepare($conn, "SELECT password FROM users WHERE id = ? LIMIT 1");
+        mysqli_stmt_bind_param($check_stmt, "i", $user_id);
+        mysqli_stmt_execute($check_stmt);
+        $result = mysqli_stmt_get_result($check_stmt);
 
         if($result && mysqli_num_rows($result) === 1) {
             $user = mysqli_fetch_assoc($result);
             if($old_password !== $user['password']) {
                 $error = "Old password is incorrect.";
             } else {
-                $update_sql = "UPDATE users SET password = '$new_password' WHERE id = $user_id";
-                if(mysqli_query($conn, $update_sql)) {
+                $update_stmt = mysqli_prepare($conn, "UPDATE users SET password = ? WHERE id = ?");
+                mysqli_stmt_bind_param($update_stmt, "si", $new_password, $user_id);
+                if(mysqli_stmt_execute($update_stmt)) {
                     $success = "Password updated successfully!";
                 } else {
                     $error = "Error updating password.";

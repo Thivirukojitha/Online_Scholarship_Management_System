@@ -11,13 +11,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = sanitize_input($conn, $_POST['title']);
     $message = sanitize_input($conn, $_POST['message']);
 
-    $insert_sql = "INSERT INTO announcements (title, message) VALUES ('$title', '$message')";
-    mysqli_query($conn, $insert_sql);
+    $insert_stmt = mysqli_prepare($conn, "INSERT INTO announcements (title, message) VALUES (?, ?)");
+    mysqli_stmt_bind_param($insert_stmt, "ss", $title, $message);
+    mysqli_stmt_execute($insert_stmt);
 }
 
 if(isset($_GET['delete'])) {
     $delete_id = intval($_GET['delete']);
-    mysqli_query($conn, "DELETE FROM announcements WHERE id = $delete_id");
+    $delete_stmt = mysqli_prepare($conn, "DELETE FROM announcements WHERE id = ?");
+    mysqli_stmt_bind_param($delete_stmt, "i", $delete_id);
+    mysqli_stmt_execute($delete_stmt);
     header("Location: announcements.php");
     exit();
 }

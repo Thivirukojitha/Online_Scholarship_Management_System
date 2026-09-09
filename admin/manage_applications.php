@@ -11,9 +11,15 @@ if(isset($_GET['action']) && isset($_GET['id'])) {
     $action = $_GET['action'];
     
     if($action == 'approve') {
-        mysqli_query($conn, "UPDATE applications SET status = 'Approved' WHERE id = $app_id");
+        $status = 'Approved';
+        $status_stmt = mysqli_prepare($conn, "UPDATE applications SET status = ? WHERE id = ?");
+        mysqli_stmt_bind_param($status_stmt, "si", $status, $app_id);
+        mysqli_stmt_execute($status_stmt);
     } elseif($action == 'reject') {
-        mysqli_query($conn, "UPDATE applications SET status = 'Rejected' WHERE id = $app_id");
+        $status = 'Rejected';
+        $status_stmt = mysqli_prepare($conn, "UPDATE applications SET status = ? WHERE id = ?");
+        mysqli_stmt_bind_param($status_stmt, "si", $status, $app_id);
+        mysqli_stmt_execute($status_stmt);
     }
     header("Location: manage_applications.php");
     exit();

@@ -15,8 +15,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_scholarship'])) {
     $description = sanitize_input($conn, $_POST['description']);
     $deadline = sanitize_input($conn, $_POST['deadline']);
 
-    $insert_sql = "INSERT INTO scholarships (title, description, deadline) VALUES ('$title', '$description', '$deadline')";
-    if(mysqli_query($conn, $insert_sql)) {
+    $insert_stmt = mysqli_prepare($conn, "INSERT INTO scholarships (title, description, deadline) VALUES (?, ?, ?)");
+    mysqli_stmt_bind_param($insert_stmt, "sss", $title, $description, $deadline);
+    if(mysqli_stmt_execute($insert_stmt)) {
         $success = "Scholarship added successfully!";
     } else {
         $error = "Error: " . mysqli_error($conn);
@@ -25,7 +26,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_scholarship'])) {
 
 if(isset($_GET['delete'])) {
     $del_id = intval($_GET['delete']);
-    mysqli_query($conn, "DELETE FROM scholarships WHERE id = $del_id");
+    $delete_stmt = mysqli_prepare($conn, "DELETE FROM scholarships WHERE id = ?");
+    mysqli_stmt_bind_param($delete_stmt, "i", $del_id);
+    mysqli_stmt_execute($delete_stmt);
     header("Location: manage_scholarships.php");
     exit();
 }

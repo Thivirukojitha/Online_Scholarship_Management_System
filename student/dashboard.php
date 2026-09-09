@@ -10,8 +10,10 @@ $student_id = $_SESSION['user_id'];
 $applications = array();
 $app_error = '';
 
-$app_query = "SELECT a.id, s.title AS scholarship_title, a.status, a.applied_date FROM applications a JOIN scholarships s ON a.scholarship_id = s.id WHERE a.student_id = $student_id ORDER BY a.applied_date DESC";
-$app_result = mysqli_query($conn, $app_query);
+$app_stmt = mysqli_prepare($conn, "SELECT a.id, s.title AS scholarship_title, a.status, a.applied_date FROM applications a JOIN scholarships s ON a.scholarship_id = s.id WHERE a.student_id = ? ORDER BY a.applied_date DESC");
+mysqli_stmt_bind_param($app_stmt, "i", $student_id);
+mysqli_stmt_execute($app_stmt);
+$app_result = mysqli_stmt_get_result($app_stmt);
 if($app_result) {
     while($row = mysqli_fetch_assoc($app_result)) {
         $applications[] = $row;

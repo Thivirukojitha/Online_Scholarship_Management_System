@@ -28,14 +28,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif($password !== $confirm_password) {
         $error = "Passwords do not match!";
     } else {
-        $check_sql = "SELECT id FROM users WHERE username = '$username'";
-        $check_result = mysqli_query($conn, $check_sql);
+        $check_stmt = mysqli_prepare($conn, "SELECT id FROM users WHERE username = ?");
+        mysqli_stmt_bind_param($check_stmt, "s", $username);
+        mysqli_stmt_execute($check_stmt);
+        $check_result = mysqli_stmt_get_result($check_stmt);
 
         if(mysqli_num_rows($check_result) > 0) {
             $error = "Username already exists. Please choose another.";
         } else {
-            $insert_sql = "INSERT INTO users (username, password, role, full_name, age) VALUES ('$username', '$password', '$role', '$full_name', $age)";
-            if(mysqli_query($conn, $insert_sql)) {
+            $insert_stmt = mysqli_prepare($conn, "INSERT INTO users (username, password, role, full_name, age) VALUES (?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($insert_stmt, "ssssi", $username, $password, $role, $full_name, $age);
+            if(mysqli_stmt_execute($insert_stmt)) {
                 $success = "Registration successful! You can now login.";
             } else {
                 $error = "Error: " . mysqli_error($conn);
