@@ -13,6 +13,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <br>
     
     <ul>
+        <li><a href="manage_users.php">Manage Users</a></li>
         <li><a href="manage_scholarships.php">Add / Manage Scholarship Programs</a></li>
         <li><a href="manage_applications.php">Review Student Applications</a></li>
         <li><a href="announcements.php">Publish Announcements</a></li>
